@@ -1,0 +1,21 @@
+{
+  "name": "plaisio-flash-message-core",
+  "version": "0.0.1",
+  "description": "Plaisio: Core Flash Message",
+  "dependencies": {
+    "jquery": "^3.5.1"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "PhpPlaisio",
+    "Flash Message",
+    "Core"
+  ],
+  "license": "MIT"
+}

@@ -1,0 +1,10 @@
+/.idea/
+/bin/
+/composer.lock
+/node_modules/
+/package-lock.json
+/plaisio-assets.csv
+/vendor/
+/www/js/**/*.js
+/www/js/**/*.map
+/www/js/Plaisio/Helper/Cast.ts
