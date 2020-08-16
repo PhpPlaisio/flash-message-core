@@ -1,9 +1,12 @@
 /.idea/
+/.phpunit.result.cache
 /bin/
 /composer.lock
 /node_modules/
 /package-lock.json
 /plaisio-assets.csv
+/test/coverage.xml
+/test/report
 /vendor/
 /www/js/**/*.js
 /www/js/**/*.map
