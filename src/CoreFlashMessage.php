@@ -34,8 +34,21 @@ class CoreFlashMessage extends HtmlElement implements FlashMessage
    */
   protected $once = true;
 
-  //--------------------------------------------------------------------------------------------------------------------
+  /**
+   * The first weight for sorting.
+   *
+   * @var int
+   */
+  protected $weight1;
 
+  /**
+   * The second weight for sorting.
+   *
+   * @var int
+   */
+  protected $weight2;
+
+  //--------------------------------------------------------------------------------------------------------------------
   /**
    * Object constructor.
    *
@@ -58,7 +71,7 @@ class CoreFlashMessage extends HtmlElement implements FlashMessage
    */
   public function getHtml(): string
   {
-    $this->setAttrData('auto-dismiss', $this->autoDismiss ? '1' : null);
+    $this->setAttrData('auto-dismiss', ($this->autoDismiss) ? '1' : null);
 
     $html = Html::generateTag('div', $this->attributes);
     $html .= $this->message;
@@ -66,6 +79,24 @@ class CoreFlashMessage extends HtmlElement implements FlashMessage
     $html .= '</div>';
 
     return $html;
+  }
+
+  //--------------------------------------------------------------------------------------------------------------------
+  /**
+   * @inheritDoc
+   */
+  public function getWeight1(): int
+  {
+    return $this->weight1;
+  }
+
+  //--------------------------------------------------------------------------------------------------------------------
+  /**
+   * @inheritDoc
+   */
+  public function getWeight2(): int
+  {
+    return $this->weight2;
   }
 
   //--------------------------------------------------------------------------------------------------------------------
@@ -115,6 +146,28 @@ class CoreFlashMessage extends HtmlElement implements FlashMessage
   public function setOnce(bool $once): CoreFlashMessage
   {
     $this->once = $once;
+
+    return $this;
+  }
+
+  //--------------------------------------------------------------------------------------------------------------------/**
+  /**
+   * @inheritDoc
+   */
+  public function setWeight1(int $weight1)
+  {
+    $this->weight1 = $weight1;
+
+    return $this;
+  }
+
+  //--------------------------------------------------------------------------------------------------------------------
+  /**
+   * @inheritDoc
+   */
+  public function setWeight2(int $weight2)
+  {
+    $this->weight2 = $weight2;
 
     return $this;
   }
