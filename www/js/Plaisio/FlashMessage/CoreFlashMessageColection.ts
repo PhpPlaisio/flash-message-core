@@ -3,7 +3,7 @@ import {Cast} from "../Helper/Cast";
 /**
  * Class for flash messages.
  */
-export class CoreFlashMessageManager
+export class CoreFlashMessageColection
 {
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -14,7 +14,7 @@ export class CoreFlashMessageManager
   /**
    * All registered tables.
    */
-  protected static flashMessages: CoreFlashMessageManager[] = [];
+  protected static flashMessages: CoreFlashMessageColection[] = [];
 
   /**
    * The jQuery object of this flash message.
@@ -45,13 +45,13 @@ export class CoreFlashMessageManager
       setTimeout(function ()
       {
         that.close();
-      }, CoreFlashMessageManager.sleep);
+      }, CoreFlashMessageColection.sleep);
     }
   }
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
-   * Registers flash messages that matches a jQuery selector as a CoreFlashMessageManager.
+   * Registers flash messages that matches a jQuery selector as a CoreFlashMessageCollection.
    *
    * @param selector The jQuery selector.
    */
@@ -65,7 +65,7 @@ export class CoreFlashMessageManager
 
       if (!flashMessage.hasClass('is-registered'))
       {
-        CoreFlashMessageManager.flashMessages.push(new that(flashMessage));
+        CoreFlashMessageColection.flashMessages.push(new that(flashMessage));
         flashMessage.addClass('is-registered');
       }
     });
