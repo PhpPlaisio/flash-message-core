@@ -3,7 +3,7 @@ import {Cast} from "../Helper/Cast";
 /**
  * Class for flash messages.
  */
-export class CoreFlashMessageColection
+export class CoreFlashMessageCollection
 {
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -14,7 +14,7 @@ export class CoreFlashMessageColection
   /**
    * All registered tables.
    */
-  protected static flashMessages: CoreFlashMessageColection[] = [];
+  protected static flashMessages: CoreFlashMessageCollection[] = [];
 
   /**
    * The jQuery object of this flash message.
@@ -45,7 +45,7 @@ export class CoreFlashMessageColection
       setTimeout(function ()
       {
         that.close();
-      }, CoreFlashMessageColection.sleep);
+      }, CoreFlashMessageCollection.sleep);
     }
   }
 
@@ -65,7 +65,7 @@ export class CoreFlashMessageColection
 
       if (!flashMessage.hasClass('is-registered'))
       {
-        CoreFlashMessageColection.flashMessages.push(new that(flashMessage));
+        CoreFlashMessageCollection.flashMessages.push(new that(flashMessage));
         flashMessage.addClass('is-registered');
       }
     });
