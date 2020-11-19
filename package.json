@@ -6,7 +6,7 @@
     "jquery": "^3.5.1"
   },
   "devDependencies": {
-    "@types/jquery": "^3.5.1"
+    "@types/jquery": "^3.5.4"
   },
   "repository": {
     "type": "git",
