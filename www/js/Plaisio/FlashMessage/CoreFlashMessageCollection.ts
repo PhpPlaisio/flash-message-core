@@ -1,4 +1,4 @@
-import {Cast} from "../Helper/Cast";
+import {Cast} from '../Helper/Cast';
 
 /**
  * Class for flash messages.
@@ -21,6 +21,11 @@ export class CoreFlashMessageCollection
    */
   private $flashMessage: JQuery;
 
+  /**
+   * The timer handle.
+   */
+  private timerHandle: number = 0;
+
   //--------------------------------------------------------------------------------------------------------------------
   /**
    * Object constructor.
@@ -37,16 +42,22 @@ export class CoreFlashMessageCollection
     {
       that.close();
     });
-
-    this.$flashMessage.slideToggle();
-
-    if (Cast.toManBool(this.$flashMessage.attr('data-auto-dismiss'), false))
+    this.$flashMessage.on('click', function ()
     {
-      setTimeout(function ()
-      {
-        that.close();
-      }, CoreFlashMessageCollection.sleep);
-    }
+      that.removeTimeout();
+      that.timerHandle = -1;
+    });
+    this.$flashMessage.slideToggle();
+    this.$flashMessage.on('mouseover', function ()
+    {
+      that.removeTimeout();
+    });
+    this.$flashMessage.on('mouseout', function ()
+    {
+      that.setTimeout();
+    });
+
+    this.setTimeout();
   }
 
   //--------------------------------------------------------------------------------------------------------------------
@@ -78,6 +89,36 @@ export class CoreFlashMessageCollection
   private close()
   {
     this.$flashMessage.slideUp();
+  }
+
+  //--------------------------------------------------------------------------------------------------------------------
+  /**
+   * Removes the timer for dismissing the flash message.
+   */
+  private removeTimeout()
+  {
+    if (this.timerHandle > 0)
+    {
+      clearTimeout(this.timerHandle);
+      this.timerHandle = 0;
+    }
+  }
+
+  //--------------------------------------------------------------------------------------------------------------------
+  /**
+   * Sets the timer for dismissing the flash message.
+   */
+  private setTimeout()
+  {
+    const that = this;
+
+    if (Cast.toManBool(this.$flashMessage.attr('data-auto-dismiss'), false) && this.timerHandle === 0)
+    {
+      this.timerHandle = setTimeout(function ()
+      {
+        that.close();
+      }, CoreFlashMessageCollection.sleep);
+    }
   }
 
   //--------------------------------------------------------------------------------------------------------------------
