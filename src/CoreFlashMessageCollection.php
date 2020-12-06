@@ -19,24 +19,24 @@ class CoreFlashMessageCollection extends PlaisioObject implements FlashMessageCo
    *
    * @var int[]
    */
-  private static $weight1 = ['error'   => 100,
-                             'warning' => 200,
-                             'info'    => 200,
-                             'success' => 100];
+  private static array $weight1 = ['error'   => 100,
+                                   'warning' => 200,
+                                   'info'    => 200,
+                                   'success' => 100];
 
   /**
    * The flash messages.
    *
    * @var FlashMessage[]|null
    */
-  private $flashMessages;
+  private ?array $flashMessages;
 
   /**
    * The current second weight for sorting.
    *
    * @var int
    */
-  private $weight2 = 0;
+  private int $weight2 = 0;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**

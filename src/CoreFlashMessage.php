@@ -17,14 +17,14 @@ class CoreFlashMessage extends HtmlElement implements FlashMessage
    *
    * @var bool
    */
-  protected $autoDismiss = false;
+  protected bool $autoDismiss = false;
 
   /**
    * The payload of the flash message.
    *
    * @var string
    */
-  protected $message;
+  protected string $message;
 
   /**
    * If true and only true this flash message is shown isOnce and removed automatically from the list of flash
@@ -32,21 +32,21 @@ class CoreFlashMessage extends HtmlElement implements FlashMessage
    *
    * @var bool
    */
-  protected $once = true;
+  protected bool $once = true;
 
   /**
    * The first weight for sorting.
    *
    * @var int
    */
-  protected $weight1;
+  protected int $weight1;
 
   /**
    * The second weight for sorting.
    *
    * @var int
    */
-  protected $weight2;
+  protected int $weight2;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**

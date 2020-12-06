@@ -8,7 +8,7 @@
   ],
   "license": "MIT",
   "require": {
-    "php": ">=7.3",
+    "php": ">=7.4",
     "plaisio-ts/helper-cast": "^1.0",
     "plaisio/cgi": "^1.2",
     "plaisio/exception": "^1.1",
@@ -17,7 +17,7 @@
     "plaisio/kernel": "^3.0",
     "plaisio/page-core": "^1.3",
     "plaisio/request": "^0.11.0",
-    "plaisio/response-core": "^1.1 || ^2.0",
+    "plaisio/response-core": "^2.3",
     "plaisio/session-core": "^4.0 || ^5.0",
     "symfony/polyfill-uuid": "^1.18"
   },
