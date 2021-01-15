@@ -38,7 +38,7 @@ class CoreFlashMessageTest extends TestCase
     $html         = $flashMessage->setAttrId('123456')
                                  ->addClass('first')
                                  ->getHtml();
-    $expected     = '<div class="flash-message first" id="123456">Hello &amp; world!<button type="button" class="close">&times;</button></div>';
+    $expected     = '<div class="first flash-message" id="123456">Hello &amp; world!<button type="button" class="close">&times;</button></div>';
     self::assertSame($expected, $html);
   }
 
@@ -52,7 +52,7 @@ class CoreFlashMessageTest extends TestCase
     $html         = $flashMessage->setAttrId('123456')
                                  ->addClass('first')
                                  ->getHtml();
-    $expected     = '<div class="flash-message first" id="123456">Hello<br/>world!<button type="button" class="close">&times;</button></div>';
+    $expected     = '<div class="first flash-message" id="123456">Hello<br/>world!<button type="button" class="close">&times;</button></div>';
     self::assertSame($expected, $html);
   }
 

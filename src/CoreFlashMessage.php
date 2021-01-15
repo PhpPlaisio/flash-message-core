@@ -9,8 +9,11 @@ use Plaisio\Helper\HtmlElement;
 /**
  * Class for flash messages.
  */
-class CoreFlashMessage extends HtmlElement implements FlashMessage
+class CoreFlashMessage implements FlashMessage
 {
+  //--------------------------------------------------------------------------------------------------------------------
+  use HtmlElement;
+
   //--------------------------------------------------------------------------------------------------------------------
   /**
    * If true and only true this flash message must be dismissed automatically.
