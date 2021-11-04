@@ -13,21 +13,21 @@
     "plaisio/cgi": "^1.2.0",
     "plaisio/exception": "^1.1.0",
     "plaisio/flash-message": "dev-master",
-    "plaisio/helper-html": "^2.0.0",
+    "plaisio/helper-html": "^3.0.0",
     "plaisio/kernel": "^3.1.1",
-    "plaisio/page-core": "^1.4.1",
+    "plaisio/page-core": "^1.4.2",
     "plaisio/request": "^0.13.0",
-    "plaisio/response-core": "^2.4.0",
-    "plaisio/session-core": "^5.1",
-    "symfony/polyfill-uuid": "^1.20"
+    "plaisio/response-core": "^2.5.0",
+    "plaisio/session-core": "^5.1.0",
+    "symfony/polyfill-uuid": "^1.22.0"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require-dev": {
-    "phing/phing": "dev-master",
-    "phpunit/phpunit": "^9.0",
-    "plaisio/console": "^2.4.4",
-    "plaisio/phing-extensions": "^2.0.7",
+    "phing/phing": "^3.0.0-RC3",
+    "phpunit/phpunit": "^9.5.0",
+    "plaisio/console": "^2.4.8",
+    "plaisio/phing-extensions": "^3.0.0",
     "setbased/phing-extensions": "dev-master"
   },
   "autoload": {
