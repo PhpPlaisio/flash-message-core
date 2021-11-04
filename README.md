@@ -22,7 +22,7 @@
 <a href="https://packagist.org/packages/plaisio/flash-message-core"><img src="https://poser.pugx.org/plaisio/flash-message-core/v/stable" alt="Latest Stable Version"/></a>
 </td>
 <td>
-<a href="https://travis-ci.org/PhpPlaisio/flash-message-core"><img src="https://travis-ci.org/PhpPlaisio/flash-message-core.svg?branch=master" alt="Build Status"/></a><br/>
+<a href="https://app.travis-ci.com/github/PhpPlaisio/flash-message-core"><img src="https://app.travis-ci.com/PhpPlaisio/flash-message-core.svg?branch=master" alt="Build Status"/></a><br/>
 <a href="https://scrutinizer-ci.com/g/PhpPlaisio/flash-message-core/?branch=master"><img src="https://scrutinizer-ci.com/g/PhpPlaisio/flash-message-core/badges/coverage.png?b=master" alt="Code Coverage"/></a>
 </td>
 <td>
