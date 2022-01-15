@@ -66,29 +66,6 @@ class CoreFlashMessage implements FlashMessage
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
-   * Returns the HTML code of the flash message.
-   *
-   * @return string
-   */
-  public function getHtml(): string
-  {
-    $walker = new RenderWalker('flash-message');
-    $this->setAttrData('auto-dismiss', ($this->autoDismiss) ? '1' : null);
-    $this->addClasses($walker->getClasses('wrapper'));
-
-    $struct = ['tag'   => 'div',
-               'attr'  => $this->attributes,
-               'inner' => [['html' => $this->message],
-                           ['tag'  => 'button',
-                            'attr' => ['class' => $walker->getClasses('close'),
-                                       'type'  => 'button'],
-                            'html' => '&times;']]];
-
-    return Html::htmlNested($struct);
-  }
-
-  //--------------------------------------------------------------------------------------------------------------------
-  /**
    * @inheritDoc
    */
   public function getWeight1(): int
@@ -103,6 +80,27 @@ class CoreFlashMessage implements FlashMessage
   public function getWeight2(): int
   {
     return $this->weight2;
+  }
+
+  //--------------------------------------------------------------------------------------------------------------------
+  /**
+   * @inheritdoc
+   */
+  public function htmlFlashMessage(): string
+  {
+    $walker = new RenderWalker('flash-message');
+    $this->setAttrData('auto-dismiss', ($this->autoDismiss) ? '1' : null);
+    $this->addClasses($walker->getClasses('wrapper'));
+
+    $struct = ['tag'   => 'div',
+               'attr'  => $this->attributes,
+               'inner' => [['html' => $this->message],
+                           ['tag'  => 'button',
+                            'attr' => ['class' => $walker->getClasses('close'),
+                                       'type'  => 'button'],
+                            'html' => '&times;']]];
+
+    return Html::htmlNested($struct);
   }
 
   //--------------------------------------------------------------------------------------------------------------------

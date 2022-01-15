@@ -129,7 +129,7 @@ class CoreFlashMessageCollection extends PlaisioObject implements FlashMessageCo
   /**
    * @inheritDoc
    */
-  public function getHtml(): string
+  public function htmlFlashMessages(): string
   {
     $this->sortFlashMessages();
 
@@ -138,7 +138,7 @@ class CoreFlashMessageCollection extends PlaisioObject implements FlashMessageCo
     {
       foreach ($this->flashMessages as $flashMessage)
       {
-        $inner .= $flashMessage->getHtml();
+        $inner .= $flashMessage->htmlFlashMessage();
       }
     }
 
