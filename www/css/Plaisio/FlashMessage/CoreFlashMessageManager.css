@@ -6,7 +6,7 @@
   width:    100%;
 }
 
-.flash-message
+.flash-message-wrapper
 {
   position:   relative;
   display:    none;
@@ -15,7 +15,7 @@
   border:     1px solid transparent;
 }
 
-.flash-message .close
+.flash-message-close
 {
   position:         absolute;
   top:              0;
@@ -27,14 +27,14 @@
   background-color: transparent;
 }
 
-.flash-message .close:hover
+.flash-message-close:hover
 {
   text-decoration: none;
   color:           #000000;
 }
 
-.flash-message .close:hover,
-.flash-message .close:focus
+.flash-message-close:hover,
+.flash-message-close:focus
 {
   font-weight: 700;
 }

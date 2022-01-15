@@ -38,7 +38,7 @@ export class CoreFlashMessageCollection
 
     const that = this;
 
-    this.$flashMessage.find('button.close').on('click', function ()
+    this.$flashMessage.find('button.flash-message-close').on('click', function ()
     {
       that.close();
     });

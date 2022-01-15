@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Plaisio\FlashMessage;
 
+use Plaisio\Helper\Html;
 use Plaisio\PlaisioInterface;
 use Plaisio\PlaisioObject;
 use Plaisio\Session\Session;
@@ -132,17 +133,18 @@ class CoreFlashMessageCollection extends PlaisioObject implements FlashMessageCo
   {
     $this->sortFlashMessages();
 
-    $html = '<div class="flash-messages">';
-
+    $inner = '';
     if (!empty($this->flashMessages))
     {
       foreach ($this->flashMessages as $flashMessage)
       {
-        $html .= $flashMessage->getHtml();
+        $inner .= $flashMessage->getHtml();
       }
     }
 
-    $html .= '</div>';
+    $html = Html::htmlNested(['tag'  => 'div',
+                              'attr' => ['class' => 'flash-messages'],
+                              'html' => $inner]);
 
     $this->cleanFlashMessages();
 

@@ -5,6 +5,7 @@ namespace Plaisio\FlashMessage;
 
 use Plaisio\Helper\Html;
 use Plaisio\Helper\HtmlElement;
+use Plaisio\Helper\RenderWalker;
 
 /**
  * Class for flash messages.
@@ -16,7 +17,7 @@ class CoreFlashMessage implements FlashMessage
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
-   * If true and only true this flash message must be dismissed automatically.
+   * Whether this flash message must be dismissed automatically.
    *
    * @var bool
    */
@@ -30,8 +31,7 @@ class CoreFlashMessage implements FlashMessage
   protected string $message;
 
   /**
-   * If true and only true this flash message is shown isOnce and removed automatically from the list of flash
-   * messages.
+   * Whether this flash message is shown once and removed automatically from the list of flash messages.
    *
    * @var bool
    */
@@ -62,8 +62,6 @@ class CoreFlashMessage implements FlashMessage
   public function __construct(string $message, bool $isHtml = false)
   {
     $this->message = ($isHtml) ? $message : Html::txt2Html($message);
-
-    $this->addClass('flash-message');
   }
 
   //--------------------------------------------------------------------------------------------------------------------
@@ -74,14 +72,19 @@ class CoreFlashMessage implements FlashMessage
    */
   public function getHtml(): string
   {
+    $walker = new RenderWalker('flash-message');
     $this->setAttrData('auto-dismiss', ($this->autoDismiss) ? '1' : null);
+    $this->addClasses($walker->getClasses('wrapper'));
 
-    $html = Html::generateTag('div', $this->attributes);
-    $html .= $this->message;
-    $html .= '<button type="button" class="close">&times;</button>';
-    $html .= '</div>';
+    $struct = ['tag'   => 'div',
+               'attr'  => $this->attributes,
+               'inner' => [['html' => $this->message],
+                           ['tag'  => 'button',
+                            'attr' => ['class' => $walker->getClasses('close'),
+                                       'type'  => 'button'],
+                            'html' => '&times;']]];
 
-    return $html;
+    return Html::htmlNested($struct);
   }
 
   //--------------------------------------------------------------------------------------------------------------------
@@ -126,7 +129,7 @@ class CoreFlashMessage implements FlashMessage
   /**
    * Sets whether this flash message must be dismissed automatically.
    *
-   * @param bool $autoDismiss If true if and only if this flash messages must dismissed automatically.
+   * @param bool $autoDismiss Whether this flash message must be dismissed automatically.
    *
    * @return CoreFlashMessage
    */
@@ -139,10 +142,10 @@ class CoreFlashMessage implements FlashMessage
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
-   * Sets whether this flash message must be shown once only.
+   * Sets whether this flash message is shown once and removed automatically from the list of flash messages.
    *
-   * @param bool $once If true and only true this flash message is shown isOnce and removed automatically from the
-   *                   list of flash messages.
+   * @param bool $once Whether this flash message is shown once and removed automatically from the list of flash
+   *                   messages.
    *
    * @return CoreFlashMessage
    */
