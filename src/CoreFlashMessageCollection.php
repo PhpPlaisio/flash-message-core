@@ -79,7 +79,7 @@ class CoreFlashMessageCollection extends PlaisioObject implements FlashMessageCo
    */
   public function addAssets(): void
   {
-    $this->nub->assets->jsAdmFunctionCall(__CLASS__, 'registerFlashMessage', ['.flash-message']);
+    $this->nub->assets->jsAdmFunctionCall(__CLASS__, 'registerFlashMessage', ['.flash-message-wrapper']);
   }
 
   //--------------------------------------------------------------------------------------------------------------------
@@ -143,7 +143,7 @@ class CoreFlashMessageCollection extends PlaisioObject implements FlashMessageCo
     }
 
     $html = Html::htmlNested(['tag'  => 'div',
-                              'attr' => ['class' => 'flash-messages'],
+                              'attr' => ['class' => 'flash-message-collection'],
                               'html' => $inner]);
 
     $this->cleanFlashMessages();
