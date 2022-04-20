@@ -12,7 +12,7 @@
     "plaisio-ts/helper-cast": "^1.0.0",
     "plaisio/cgi": "^1.2.0",
     "plaisio/exception": "^1.1.0",
-    "plaisio/flash-message": "dev-master",
+    "plaisio/flash-message": "^0.9.0",
     "plaisio/helper-html": "^3.0.0",
     "plaisio/kernel": "^3.1.1",
     "plaisio/page-core": "^1.4.2",
@@ -24,11 +24,11 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require-dev": {
-    "phing/phing": "^3.0.0-RC3",
+    "phing/phing": "^3.0.0",
     "phpunit/phpunit": "^9.5.0",
     "plaisio/console": "^2.4.8",
     "plaisio/phing-extensions": "^3.0.0",
-    "setbased/phing-extensions": "dev-master"
+    "setbased/phing-extensions": "^3.0.1"
   },
   "autoload": {
     "psr-4": {
@@ -42,6 +42,9 @@
   },
   "config": {
     "bin-dir": "bin/",
-    "sort-packages": true
+    "sort-packages": true,
+    "allow-plugins": {
+      "phing/phing-composer-configurator": true
+    }
   }
 }
