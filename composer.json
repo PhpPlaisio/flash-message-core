@@ -9,7 +9,7 @@
   "license": "MIT",
   "require": {
     "php": ">=7.4",
-    "plaisio-ts/helper-cast": "^1.0.2",
+    "plaisio-ts/helper-cast": "^2.0.0",
     "plaisio/cgi": "^1.2.0",
     "plaisio/exception": "^1.1.0",
     "plaisio/flash-message": "1.0.0",
@@ -17,18 +17,18 @@
     "plaisio/kernel": "^3.1.1",
     "plaisio/page-core": "^1.4.2",
     "plaisio/request": "^0.13.0",
-    "plaisio/response-core": "^2.6.0",
-    "plaisio/session-core": "^5.1.0",
-    "symfony/polyfill-uuid": "^1.24.0"
+    "plaisio/response-core": "^2.7.0",
+    "plaisio/session-core": "^5.1.2",
+    "symfony/polyfill-uuid": "^1.26.0"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require-dev": {
-    "phing/phing": "^3.0.0-RC3",
-    "phpunit/phpunit": "^9.5.11",
-    "plaisio/console": "^2.5.0",
-    "plaisio/phing-extensions": "^3.0.0",
-    "setbased/phing-extensions": "dev-master"
+    "phing/phing": "^3.0.0",
+    "phpunit/phpunit": "^9.5.25",
+    "plaisio/console": "^2.7.1",
+    "plaisio/phing-extensions": "^3.1.0",
+    "setbased/phing-extensions": "^3.0.1"
   },
   "autoload": {
     "psr-4": {

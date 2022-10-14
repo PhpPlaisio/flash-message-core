@@ -12,4 +12,4 @@
 /vendor/
 /www/js/**/*.js
 /www/js/**/*.map
-/www/js/Plaisio/Helper/Cast.ts
+/www/js/Plaisio/Helper/
