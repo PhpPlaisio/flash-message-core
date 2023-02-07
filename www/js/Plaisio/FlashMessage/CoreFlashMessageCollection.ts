@@ -125,4 +125,4 @@ export class CoreFlashMessageCollection
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-// Plaisio\Console\Helper\TypeScript\TypeScriptMarkHelper::md5: 08eb98226fab8cdeff1dbd813235f305
+// Plaisio\Console\TypeScript\Helper\MarkHelper::md5: 08eb98226fab8cdeff1dbd813235f305

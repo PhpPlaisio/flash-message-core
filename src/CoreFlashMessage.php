@@ -154,11 +154,11 @@ class CoreFlashMessage implements FlashMessage
     return $this;
   }
 
-  //--------------------------------------------------------------------------------------------------------------------/**
+  //--------------------------------------------------------------------------------------------------------------------
   /**
    * @inheritDoc
    */
-  public function setWeight1(int $weight1)
+  public function setWeight1(int $weight1): self
   {
     $this->weight1 = $weight1;
 
@@ -169,7 +169,7 @@ class CoreFlashMessage implements FlashMessage
   /**
    * @inheritDoc
    */
-  public function setWeight2(int $weight2)
+  public function setWeight2(int $weight2): self
   {
     $this->weight2 = $weight2;
 
