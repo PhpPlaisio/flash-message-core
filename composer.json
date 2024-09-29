@@ -16,20 +16,18 @@
     "plaisio/helper-html": "^4.1.0",
     "plaisio/kernel": "^3.2.1",
     "plaisio/page-core": "^1.5.0",
-    "plaisio/request": "^0.13.1",
+    "plaisio/request": "^1.0.0",
     "plaisio/response-core": "^2.8.0",
-    "plaisio/session-core": "^5.2.0",
-    "symfony/polyfill-uuid": "^1.27.0"
+    "plaisio/session-core": "^5.4.0",
+    "symfony/polyfill-uuid": "^1.31.0"
   },
-  "minimum-stability": "dev",
-  "prefer-stable": true,
   "require-dev": {
     "phing/phing": "^3.0.0",
-    "phpunit/phpunit": "^9.6.3",
+    "phpunit/phpunit": "^10.5.35",
     "plaisio/console-kernel": "^1.0.1",
-    "plaisio/console-type-script": "^1.0.0",
-    "plaisio/phing-extensions": "^3.2.0",
-    "setbased/phing-extensions": "^3.1.0"
+    "plaisio/console-type-script": "^1.1.0",
+    "plaisio/phing-extensions": "^3.3.0",
+    "setbased/phing-extensions": "^3.2.0"
   },
   "autoload": {
     "psr-4": {

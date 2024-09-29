@@ -32,7 +32,7 @@ class FlashMessageRemovePage extends CorePage
    */
   public function checkAuthorization(): void
   {
-    if (!Nub::$nub->request->isPost())
+    if (!Nub::$nub->request->isPost)
     {
       throw new BadRequestException('POST expected');
     }
