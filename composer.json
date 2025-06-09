@@ -18,7 +18,7 @@
     "plaisio/page-core": "^1.6.0",
     "plaisio/request": "^1.0.1",
     "plaisio/response-core": "^2.9.0",
-    "plaisio/session-core": "^5.5.0",
+    "plaisio/session-core": "^5.6.0",
     "symfony/polyfill-uuid": "^1.31.0"
   },
   "require-dev": {
