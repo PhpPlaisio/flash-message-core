@@ -34,7 +34,7 @@ class FlashMessageRemovePage extends CorePage
   {
     if (!Nub::$nub->request->isPost)
     {
-      throw new BadRequestException('POST expected');
+      throw new BadRequestException('POST expected.');
     }
   }
 
@@ -44,7 +44,7 @@ class FlashMessageRemovePage extends CorePage
    */
   public function handleRequest(): Response
   {
-    Nub::$nub->flashMessage->removeFlashMessage($_POST['id']);
+    Nub::$nub->flashMessage->removeFlashMessage(Nub::$nub->request->post['id']);
 
     return $this->response = new NullResponse();
   }
