@@ -56,8 +56,8 @@ class CoreFlashMessage implements FlashMessage
    * Object constructor.
    *
    * @param string $message The payload of the flash message.
-   * @param bool   $isHtml  If set the message is a HTML snippet, otherwise special characters in the inner text will be
-   *                        replaced with HTML entities.
+   * @param bool $isHtml    If set the message is an HTML snippet, otherwise special characters in the inner text will
+   *                        be replaced with HTML entities.
    */
   public function __construct(string $message, bool $isHtml = false)
   {
