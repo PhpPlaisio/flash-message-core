@@ -16,14 +16,14 @@
     "plaisio/helper-html": "^4.2.0",
     "plaisio/kernel": "^3.3.0",
     "plaisio/page-core": "^1.6.0",
-    "plaisio/request": "^1.0.1",
+    "plaisio/request": "^2.0.0",
     "plaisio/response-core": "^2.9.0",
-    "plaisio/session-core": "^5.6.0",
-    "symfony/polyfill-uuid": "^1.31.0"
+    "plaisio/session-core": "^5.7.0",
+    "symfony/polyfill-uuid": "^1.32.0"
   },
   "require-dev": {
     "phing/phing": "^3.0.1",
-    "phpunit/phpunit": "^11.5.22",
+    "phpunit/phpunit": "^11.5.25",
     "plaisio/console-kernel": "^1.2.0",
     "plaisio/console-type-script": "^1.2.0",
     "plaisio/phing-extensions": "^3.4.0",
