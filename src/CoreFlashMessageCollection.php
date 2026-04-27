@@ -41,6 +41,7 @@ class CoreFlashMessageCollection extends PlaisioObject implements FlashMessageCo
   private int $weight2 = 0;
 
   //--------------------------------------------------------------------------------------------------------------------
+
   /**
    * Object constructor.
    *
@@ -51,10 +52,6 @@ class CoreFlashMessageCollection extends PlaisioObject implements FlashMessageCo
     parent::__construct($object);
 
     $this->flashMessages = &$this->nub->session->getNamedSection(__CLASS__, Session::SECTION_EXCLUSIVE);
-    if ($this->flashMessages===null)
-    {
-      $this->flashMessages = [];
-    }
   }
 
   //--------------------------------------------------------------------------------------------------------------------
@@ -94,6 +91,11 @@ class CoreFlashMessageCollection extends PlaisioObject implements FlashMessageCo
    */
   public function addFlashMessage(FlashMessage $flashMessage): FlashMessageCollection
   {
+    if ($this->flashMessages===null)
+    {
+      $this->flashMessages = [];
+    }
+
     $uuid = uuid_create();
     $flashMessage->setAttrId($uuid);
     $this->flashMessages[$uuid] = $flashMessage;
@@ -142,12 +144,9 @@ class CoreFlashMessageCollection extends PlaisioObject implements FlashMessageCo
     $this->sortFlashMessages();
 
     $inner = '';
-    if (!empty($this->flashMessages))
+    foreach ($this->flashMessages ?? [] as $flashMessage)
     {
-      foreach ($this->flashMessages as $flashMessage)
-      {
-        $inner .= $flashMessage->htmlFlashMessage();
-      }
+      $inner .= $flashMessage->htmlFlashMessage();
     }
 
     $html = Html::htmlNested(['tag'  => 'div',
@@ -179,7 +178,7 @@ class CoreFlashMessageCollection extends PlaisioObject implements FlashMessageCo
    */
   private function cleanFlashMessages(): void
   {
-    foreach ($this->flashMessages as $id => $flashMessage)
+    foreach ($this->flashMessages ?? [] as $id => $flashMessage)
     {
       if (!$flashMessage->isPersistent())
       {
