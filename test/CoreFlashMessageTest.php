@@ -17,7 +17,7 @@ class CoreFlashMessageTest extends TestCase
    */
   public function testAutoDismiss(): void
   {
-    $flashMessage = new CoreFlashMessage('Hello, world!');
+    $flashMessage = new CoreFlashMessage('Hello, world!', false, false, false);
     foreach ([false, true] as $autoDismiss)
     {
       $object = $flashMessage->setAutoDismiss($autoDismiss);
@@ -34,7 +34,7 @@ class CoreFlashMessageTest extends TestCase
    */
   public function testGetHtml1(): void
   {
-    $flashMessage = new CoreFlashMessage('Hello & world!');
+    $flashMessage = new CoreFlashMessage('Hello & world!', false, false, false);
     $html         = $flashMessage->setAttrId('123456')
                                  ->addClass('first')
                                  ->htmlFlashMessage();
@@ -48,7 +48,7 @@ class CoreFlashMessageTest extends TestCase
    */
   public function testGetHtml2(): void
   {
-    $flashMessage = new CoreFlashMessage('Hello<br/>world!', true);
+    $flashMessage = new CoreFlashMessage('Hello<br/>world!', true, false, false);
     $html         = $flashMessage->setAttrId('123456')
                                  ->addClass('first')
                                  ->htmlFlashMessage();
@@ -58,15 +58,15 @@ class CoreFlashMessageTest extends TestCase
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
-   * Test getter and setter of once.
+   * Test getter and setter of persistent
    */
-  public function testOnce(): void
+  public function testPersistent(): void
   {
-    $flashMessage = new CoreFlashMessage('Hello, world!');
+    $flashMessage = new CoreFlashMessage('Hello, world!', false, false, false);
     foreach ([false, true] as $once)
     {
-      $object = $flashMessage->setOnce($once);
-      $bool   = $flashMessage->isOnce();
+      $object = $flashMessage->setPersistent($once);
+      $bool   = $flashMessage->isPersistent();
 
       self::assertSame($flashMessage, $object);
       self::assertSame($once, $bool);
@@ -79,7 +79,7 @@ class CoreFlashMessageTest extends TestCase
    */
   public function testWeight1(): void
   {
-    $flashMessage = new CoreFlashMessage('Hello, world!');
+    $flashMessage = new CoreFlashMessage('Hello, world!', false, false, false);
     $weight1      = rand();
     $object       = $flashMessage->setWeight1($weight1);
     $weight       = $flashMessage->getWeight1();
@@ -94,7 +94,7 @@ class CoreFlashMessageTest extends TestCase
    */
   public function testWeight2(): void
   {
-    $flashMessage = new CoreFlashMessage('Hello, world!');
+    $flashMessage = new CoreFlashMessage('Hello, world!', false, false, false);
     $weight2      = rand();
     $object       = $flashMessage->setWeight2($weight2);
     $weight       = $flashMessage->getWeight2();

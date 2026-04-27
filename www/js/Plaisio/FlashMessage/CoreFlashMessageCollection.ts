@@ -17,6 +17,11 @@ export class CoreFlashMessageCollection
   protected static flashMessages: CoreFlashMessageCollection[] = [];
 
   /**
+   * The URL to remove a persistent flash message.
+   */
+  private static urlRemove: string;
+
+  /**
    * The jQuery object of this flash message.
    */
   private $flashMessage: JQuery;
@@ -36,23 +41,23 @@ export class CoreFlashMessageCollection
   {
     this.$flashMessage = $flashMessage;
 
-    const that = this;
+    const that: this = this;
 
-    this.$flashMessage.find('button.flash-message-close').on('click', function ()
+    this.$flashMessage.find('button.flash-message-close').on('click', function (): void
     {
       that.close();
     });
-    this.$flashMessage.on('click', function ()
+    this.$flashMessage.on('click', function (): void
     {
       that.removeTimeout();
       that.timerHandle = -1;
     });
     this.$flashMessage.slideToggle();
-    this.$flashMessage.on('mouseover', function ()
+    this.$flashMessage.on('mouseover', function (): void
     {
       that.removeTimeout();
     });
-    this.$flashMessage.on('mouseout', function ()
+    this.$flashMessage.on('mouseout', function (): void
     {
       that.setTimeout();
     });
@@ -65,12 +70,15 @@ export class CoreFlashMessageCollection
    * Registers flash messages that matches a jQuery selector as a CoreFlashMessageCollection.
    *
    * @param selector The jQuery selector.
+   * @param urlRemove The URL to remove a persistent flash message.
    */
-  public static registerFlashMessage(selector: string)
+  public static main(selector: string, urlRemove: string): void
   {
-    const that = this;
+    const that: typeof CoreFlashMessageCollection = this;
 
-    $(selector).each(function ()
+    that.urlRemove = urlRemove;
+
+    $(selector).each(function (): void
     {
       let flashMessage = $(this);
 
@@ -86,16 +94,20 @@ export class CoreFlashMessageCollection
   /**
    * Closes this flash message.
    */
-  private close()
+  private close(): void
   {
     this.$flashMessage.slideUp();
+    if (Cast.toManBool(this.$flashMessage.attr('data-persistent'), false))
+    {
+      $.post(CoreFlashMessageCollection.urlRemove, {'id': Cast.toManString(this.$flashMessage.attr('id'))});
+    }
   }
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
    * Removes the timer for dismissing the flash message.
    */
-  private removeTimeout()
+  private removeTimeout(): void
   {
     if (this.timerHandle > 0)
     {
@@ -108,13 +120,13 @@ export class CoreFlashMessageCollection
   /**
    * Sets the timer for dismissing the flash message.
    */
-  private setTimeout()
+  private setTimeout(): void
   {
-    const that = this;
+    const that: this = this;
 
     if (Cast.toManBool(this.$flashMessage.attr('data-auto-dismiss'), false) && this.timerHandle === 0)
     {
-      this.timerHandle = setTimeout(function ()
+      this.timerHandle = setTimeout(function (): void
       {
         that.close();
       }, CoreFlashMessageCollection.sleep);
@@ -125,4 +137,4 @@ export class CoreFlashMessageCollection
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-// Plaisio\Console\TypeScript\Helper\MarkHelper::md5: 08eb98226fab8cdeff1dbd813235f305
+// Plaisio\Console\TypeScript\Helper\MarkHelper::md5: b4ac74863f050386e7eaa9b663de1bf6

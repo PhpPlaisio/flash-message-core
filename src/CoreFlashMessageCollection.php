@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Plaisio\FlashMessage;
 
+use Plaisio\FlashMessage\Page\FlashMessageRemovePage;
 use Plaisio\Helper\Html;
 use Plaisio\PlaisioInterface;
 use Plaisio\PlaisioObject;
@@ -68,7 +69,10 @@ class CoreFlashMessageCollection extends PlaisioObject implements FlashMessageCo
   public static function compare(FlashMessage $flashMessage1, FlashMessage $flashMessage2): int
   {
     $cmp1 = $flashMessage1->getWeight1()<=>$flashMessage2->getWeight1();
-    if ($cmp1!==0) return $cmp1;
+    if ($cmp1!==0)
+    {
+      return $cmp1;
+    }
 
     return $flashMessage1->getWeight2()<=>$flashMessage2->getWeight2();
   }
@@ -79,7 +83,9 @@ class CoreFlashMessageCollection extends PlaisioObject implements FlashMessageCo
    */
   public function addAssets(): void
   {
-    $this->nub->assets->jsAdmFunctionCall(__CLASS__, 'registerFlashMessage', ['.flash-message-wrapper']);
+    $this->nub->assets->jsAdmFunctionCall(__CLASS__,
+                                          'main',
+                                          ['.flash-message-wrapper', FlashMessageRemovePage::getUrl()]);
   }
 
   //--------------------------------------------------------------------------------------------------------------------
@@ -101,23 +107,25 @@ class CoreFlashMessageCollection extends PlaisioObject implements FlashMessageCo
   /**
    * @inheritDoc
    */
-  public function create(string $type, string $message, bool $isHtml = false): FlashMessage
+  public function create(string $type,
+                         string $message,
+                         bool   $html = false,
+                         ?bool  $autoDismiss = null,
+                         ?bool  $persistent = null): FlashMessage
   {
     if (in_array($type, ['success', 'info', 'warning', 'error']))
     {
-      $flashMessage = new CoreFlashMessage($message, $isHtml);
-      $flashMessage->addClass('flash-message-'.$type)
+      $autoDismiss  = $autoDismiss ?? ($type==='success');
+      $persistent   = $persistent ?? false;
+      $flashMessage = new CoreFlashMessage($message, $html, $autoDismiss, $persistent);
+      $flashMessage->addClass('flash-message')
+                   ->addClass('is-'.$type)
                    ->setWeight1(static::$weight1[$type])
-                   ->setWeight2(++$this->weight2)
-                   ->setAutoDismiss($type==='success');
-    }
-    elseif (is_a($type, FlashMessage::class))
-    {
-      $flashMessage = new $type($message, $isHtml);
+                   ->setWeight2(++$this->weight2);
     }
     else
     {
-      throw new LogicException("Type '%s' is not a flash message", $type);
+      throw new LogicException("Type '%s' is not a flash message.", $type);
     }
 
     $this->addFlashMessage($flashMessage);
@@ -173,7 +181,7 @@ class CoreFlashMessageCollection extends PlaisioObject implements FlashMessageCo
   {
     foreach ($this->flashMessages as $id => $flashMessage)
     {
-      if ($flashMessage->isOnce())
+      if (!$flashMessage->isPersistent())
       {
         $this->removeFlashMessage($id);
       }

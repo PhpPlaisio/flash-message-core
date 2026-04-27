@@ -17,11 +17,11 @@ class CoreFlashMessage implements FlashMessage
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
-   * Whether this flash message must be dismissed automatically.
+   * Whether this flash message is automatically dismissed.
    *
    * @var bool
    */
-  protected bool $autoDismiss = false;
+  protected bool $autoDismiss;
 
   /**
    * The payload of the flash message.
@@ -31,11 +31,11 @@ class CoreFlashMessage implements FlashMessage
   protected string $message;
 
   /**
-   * Whether this flash message is shown once and removed automatically from the list of flash messages.
+   *Whether this flash message is a persistent flash message.
    *
    * @var bool
    */
-  protected bool $once = true;
+  protected bool $persistent;
 
   /**
    * The first weight for sorting.
@@ -55,13 +55,18 @@ class CoreFlashMessage implements FlashMessage
   /**
    * Object constructor.
    *
-   * @param string $message The payload of the flash message.
-   * @param bool $isHtml    If set the message is an HTML snippet, otherwise special characters in the inner text will
-   *                        be replaced with HTML entities.
+   * @param string $message     The payload of the flash message.
+   * @param bool   $html        Whether the message is an HTML snippet or plain text. In plain text special characters
+   *                            in the inner text will be replaced with HTML entities.
+   * @param bool   $autoDismiss Whether the flash message is automatically dismissed.
+   * @param bool   $persistent  Whether the flash message is a persistent flash message.
+   *
    */
-  public function __construct(string $message, bool $isHtml = false)
+  public function __construct(string $message, bool $html, bool $autoDismiss, bool $persistent)
   {
-    $this->message = ($isHtml) ? $message : Html::txt2Html($message);
+    $this->message     = ($html) ? $message : Html::txt2Html($message);
+    $this->autoDismiss = $autoDismiss;
+    $this->persistent  = $persistent;
   }
 
   //--------------------------------------------------------------------------------------------------------------------
@@ -89,8 +94,9 @@ class CoreFlashMessage implements FlashMessage
   public function htmlFlashMessage(): string
   {
     $walker = new RenderWalker('flash-message');
-    $this->setAttrData('auto-dismiss', ($this->autoDismiss) ? '1' : null);
-    $this->addClasses($walker->getClasses('wrapper'));
+    $this->setAttrData('auto-dismiss', ($this->autoDismiss) ? '1' : null)
+         ->setAttrData('persistent', ($this->persistent) ? '1' : null)
+         ->addClasses($walker->getClasses('wrapper'));
 
     $struct = ['tag'   => 'div',
                'attr'  => $this->attributes,
@@ -105,9 +111,7 @@ class CoreFlashMessage implements FlashMessage
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
-   * Returns true if and only if this flash message must be dismissed automatically.
-   *
-   * @return bool
+   * @inheritDoc
    */
   public function isAutoDismiss(): bool
   {
@@ -118,20 +122,16 @@ class CoreFlashMessage implements FlashMessage
   /**
    * @inheritDoc
    */
-  public function isOnce(): bool
+  public function isPersistent(): bool
   {
-    return $this->once;
+    return $this->persistent;
   }
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
-   * Sets whether this flash message must be dismissed automatically.
-   *
-   * @param bool $autoDismiss Whether this flash message must be dismissed automatically.
-   *
-   * @return CoreFlashMessage
+   * @inheritDoc
    */
-  public function setAutoDismiss(bool $autoDismiss): CoreFlashMessage
+  public function setAutoDismiss(bool $autoDismiss): self
   {
     $this->autoDismiss = $autoDismiss;
 
@@ -140,16 +140,11 @@ class CoreFlashMessage implements FlashMessage
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
-   * Sets whether this flash message is shown once and removed automatically from the list of flash messages.
-   *
-   * @param bool $once Whether this flash message is shown once and removed automatically from the list of flash
-   *                   messages.
-   *
-   * @return CoreFlashMessage
+   * @inheritDoc
    */
-  public function setOnce(bool $once): CoreFlashMessage
+  public function setPersistent(bool $persistent): self
   {
-    $this->once = $once;
+    $this->persistent = $persistent;
 
     return $this;
   }
